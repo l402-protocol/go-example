@@ -11,6 +11,8 @@ The L402 protocol allows servers to:
 
 In a production environment, [Fewsats](https://fewsats.com) typically provides the gateway service, handling all payment processing and security aspects. This demo includes an open-source gateway implementation to help you understand and experiment with the complete flow.
 
+For the complete L402 protocol specification, please visit the [L402 Protocol Repository](https://github.com/l402-protocol/l402).
+
 ## Components
 
 ### 1. Server (Your Data Service)
@@ -69,6 +71,17 @@ sequenceDiagram
     S-->>C: 10. Return protected resource
 ```
 
+## Production Gateway
+
+If you want to use a hosted gateway that handles payments with credit card, lightning, and stablecoins while managing all payment-related complexities, you can use [Fewsats](https://fewsats.com). Fewsats provides a production-ready gateway with:
+
+- Multiple payment methods (credit cards, Lightning Network, cryptocurrencies)
+- Secure payment processing
+- Automated webhook notifications
+- Simple integration through SDKs
+
+For easy integration, check out the [Fewsats Python SDK](https://fewsats.github.io/fewsats-python/) which provides tools for both payment processing and AI agent integration.
+
 ## Getting Started
 
 ### Prerequisites
@@ -100,10 +113,15 @@ View available payment offers:
 go run cmd/client/main.go
 ```
 
-Simulate a payment (using the fake payment provider):
+When you first run the client without any flags, you'll see that the mock wallet cannot process the payment, and you'll receive information about the available offers.
+
+To simulate a successful payment flow, use the `--fake` flag:
 ```bash
 go run cmd/client/main.go --fake --offer-id=offer_0001
 ```
+
+After the payment is processed successfully, you'll be able to access the protected resource. This demonstrates the complete L402 flow from payment to resource access.
+
 
 ### Example Offers
 
